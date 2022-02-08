@@ -12,9 +12,10 @@ class Node{
 };
 class NodeTree{
 	Node* root;
+	double xpos,ypos;
 	static int nodeID;
 	public:
-	NodeTree();
+	NodeTree(double,double);
 	void createNode();
 	void joinNode();
 	void flagSrcDest();
