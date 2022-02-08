@@ -12,7 +12,7 @@ class Queue{
 	public:
 	Queue();
 	Enqueue(Node*);
-	void Dequeue(int key);//for dequeueAll node address
+	Node*Dequeue(int key);//for dequeueAll node address
 	void Delete();//delete all Node and nodes in Linked list
 };
 #endif
