@@ -30,11 +30,11 @@ void NodeTree::createNode(double xpos,double ypos){
 		Q.Enqueue(newNode);
 	}
 }
-void joinNode(Node* node1,Node* node2){
+void NodeTree::joinNode(Node* node1,Node* node2){
 	node1->Edges->push_back(node2);
 	node2->Edges->push_back(node1);
 }
-void flagSrcDest(Node*node1,Node*node2){
+void NodeTree::flagSrcDest(Node*node1,Node*node2){
 	node1->flagSrc=true;
 	node2->flagDest=true;
 }

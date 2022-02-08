@@ -8,26 +8,6 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
 {
     glViewport(0, 0, width, height);
 }
-void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods)
-{
-    if(key==GLFW_KEY_ESCAPE&& action == GLFW_PRESS)
-        glfwSetWindowShouldClose(window, true);
-    
-    if(key==GLFW_KEY_L&& action == GLFW_PRESS)
-    	{cout<<"Hello World"<<endl;
-	}
-}
-void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
-{
-    if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-    {
-       double xpos, ypos;
-       //getting cursor position
-       glfwGetCursorPos(window, &xpos, &ypos);
-       cout << "Cursor Position at (" << xpos << " : " << ypos << endl;
-    }
-}
-
 int main(){
 	initializeGLFW();
 	GLFWwindow*window=glfwCreateWindow(WINDOW_WIDTH,WINDOW_HEIGHT,"Dijkstra Algorithm Visualizer",NULL,NULL);
@@ -77,7 +57,6 @@ int main(){
 	glClearColor(0.1f,0.1f,0.1f,0.5f);
 	while(!glfwWindowShouldClose(window)){
 		glfwSetKeyCallback(window,key_callback);
-		glfwSetMouseButtonCallback(window,mouse_button_callback);
 		glClear(GL_COLOR_BUFFER_BIT);
 		shaderObj.Activate();//activate shader
 		vao1.Bind();//bind vao

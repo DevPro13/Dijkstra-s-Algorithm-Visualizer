@@ -3,15 +3,16 @@
 #include"Node.h"
 #include<iostream>
 #include<stdlib.h>
-struct node{
+class node{
+	public:
 	Node* newTreeNode;//for Node address
-	struct node* next;//for next node address in linked list
+	node* next;//for next node address in linked list
 };
 class Queue{
-	struct node *head;//for head node
+	node *head;//for head node
 	public:
 	Queue();
-	Enqueue(Node*);
+	void Enqueue(Node*);
 	Node*Dequeue(int key);//for dequeueAll node address
 	void Delete();//delete all Node and nodes in Linked list
 };
