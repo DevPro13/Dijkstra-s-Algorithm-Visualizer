@@ -1,0 +1,2 @@
+ g++ Main.cpp Includes/VAO.cpp Includes/VBO.cpp Includes/EBO.cpp Includes/ShaderClass.cpp Includes/Texture.cpp -o main glad.c -ldl -lglfw
+
