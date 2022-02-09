@@ -1,37 +1,33 @@
-#inlclude"Node.h"
+#include"Node.h"
 NodeTree::NodeTree(){
 	root=NULL;
 }
-static void NodeTree::incID(){
+void NodeTree::createNode(Queue& Q,double xpos,double ypos){
 	if(nodeID!=NULL){
-		*nodeID+=1;
+		*nodeID++;
 	}
 	else{
 		nodeID=(int*)malloc(sizeof(int));
 		*nodeID=0;
 	}
-}		
-void NodeTree::createNode(Queue Q,double xpos,double ypos){
-	incID();
-	
 	if(root==NULL){
 		root=(Node*)malloc(sizeof(Node));
 		root->xpos=xpos;
 		root->ypos=ypos;
-		root->id=nodeID;
-		Q.Enqueue(root);
+		root->id=*nodeID;
+		Q.Enqueue(root);		
 	}
 	else{
 		Node*newNode=(Node*)malloc(sizeof(Node));
 		newNode->xpos=xpos;
 		newNode->ypos=ypos;
-		newNode->id=nodeID;
+		newNode->id=*nodeID;
 		Q.Enqueue(newNode);
 	}
 }
 void NodeTree::joinNode(Node* node1,Node* node2){
-	node1->Edges->push_back(node2);
-	node2->Edges->push_back(node1);
+	node1->Edges.push_back(node2);
+	node2->Edges.push_back(node1);
 }
 void NodeTree::flagSrcDest(Node*node1,Node*node2){
 	node1->flagSrc=true;
@@ -43,6 +39,7 @@ void Queue::Enqueue(Node*treeNodeAddress){
 		head=(node*)malloc(sizeof(node));
 		head->newTreeNode=treeNodeAddress;
 		head->next=NULL;
+
 	}
 	else{
 		node* tmp=head;
@@ -60,18 +57,26 @@ void Queue::Delete(){
 	}
 	node*tmpHead=head;
 	while(tmpHead->next!=NULL){
-		delete(head->treeNodeAddress);
-		tmpHead->tmpHead->next;
+		delete(head->newTreeNode);
+		tmpHead=tmpHead->next;
 		delete(head);
 		head=tmpHead;
 	}
-	std::cout<<"All Nodes successfully Deleted"<<std::endl;
+}
+void Queue::Display(){
+	int count=0;
+	while(head!=NULL){
+		//std::cout<<"Node is created at "<<head->newTreeNode->xpos<<","<<head->newTreeNode->ypos<<std::endl;
+		head=head->next;
+		count++;
+	}
+	std::cout<<count<<std::endl;
 }
 Node* Queue::Dequeue(int key){
 	node*tmpHead=head;
 	while(tmpHead!=NULL){
-		if(tmpHead->treeNodeAddress->id==key){
-			return tmp->treeNodeAddress;
+		if(tmpHead->newTreeNode->id==key){
+			return tmpHead->newTreeNode;
 		}
 		tmpHead=tmpHead->next;
 	}

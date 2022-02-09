@@ -8,8 +8,9 @@
 #include"VAO.h"
 #include"EBO.h"
 #include"VBO.h"
-#include"Texture.h"
-//NodeTree newNodeLeaf;
+//#include"Render.h"
+NodeTree newNodeLeaf;
+Queue Q;
 void initializeGLFW(){
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR,4);
@@ -24,8 +25,8 @@ void mouse_button_callback_forNodeCreate(GLFWwindow* window, int button, int act
        double xpos, ypos;
        //getting cursor position
         glfwGetCursorPos(window, &xpos, &ypos);
-     	newNodeLeaf.createNode(xpos,ypos);
-	std::cout << "Node created at Position  (" << xpos << "," << ypos <<".\n";
+     	newNodeLeaf.createNode(Q,xpos,ypos);
+	std::cout << "Node created at Position  (" << xpos << "," << ypos <<").\n";
     }
 }
 
@@ -61,7 +62,10 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
     }
     
 		else if(key==GLFW_KEY_2&& action == GLFW_PRESS){//to connect edges
-	   		 glfwSetMouseButtonCallback(window,mouse_button_callback_forEdgeJoin);
+				std::cout<<"Created nodes are\n\n\n\n\n";
+					Q.Display();
+					Q.Delete();
+	   		// glfwSetMouseButtonCallback(window,mouse_button_callback_forEdgeJoin);
     	}
 		else if(key==GLFW_KEY_3&& action == GLFW_PRESS){//to select src and destination
 	    			glfwSetMouseButtonCallback(window,mouse_button_callback_forSrcDestSelect);
