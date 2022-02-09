@@ -1,6 +1,5 @@
 #ifndef QUEUE_H
 #define QUEUE_H
-#include"Node.h"
 #include<iostream>
 #include<stdlib.h>
 class node{

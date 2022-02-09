@@ -11,7 +11,7 @@ class Node{
 	int id;//node id or vertex number
 	double weight;
 };
-class NodeTree{
+class NodeTree:public class Queue{
 	Node* root;
 	static int *nodeID;
 	public:
