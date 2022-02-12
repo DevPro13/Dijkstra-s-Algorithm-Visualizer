@@ -4,7 +4,7 @@ NodeTree::NodeTree(){
 }
 void NodeTree::createNode(Queue& Q,double xpos,double ypos){
 	if(nodeID!=NULL){
-		*nodeID++;
+		*nodeID+=1;
 	}
 	else{
 		nodeID=(int*)malloc(sizeof(int));
@@ -44,7 +44,7 @@ void Queue::Enqueue(Node*treeNodeAddress){
 	else{
 		node* tmp=head;
 		node*newNode=(node*)malloc(sizeof(node));
-		while(tmp!=NULL)tmp=tmp->next;
+		while(tmp->next!=NULL)tmp=tmp->next;
 		newNode->next=NULL;
 		newNode->newTreeNode=treeNodeAddress;
 		tmp->next=newNode;
@@ -56,7 +56,7 @@ void Queue::Delete(){
 		std::cout<<"Queue is empty"<<std::endl;
 	}
 	node*tmpHead=head;
-	while(tmpHead->next!=NULL){
+	while(tmpHead!=NULL){
 		delete(head->newTreeNode);
 		tmpHead=tmpHead->next;
 		delete(head);
@@ -66,7 +66,8 @@ void Queue::Delete(){
 void Queue::Display(){
 	int count=0;
 	while(head!=NULL){
-		//std::cout<<"Node is created at "<<head->newTreeNode->xpos<<","<<head->newTreeNode->ypos<<std::endl;
+		std::cout<<"Node od id "<<head->newTreeNode->id<<" is created at "<<head->newTreeNode->xpos<<","<<head->newTreeNode->ypos<<std::endl;
+		
 		head=head->next;
 		count++;
 	}

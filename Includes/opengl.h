@@ -21,11 +21,10 @@ void initializeGLFW(){
 void mouse_button_callback_forNodeCreate(GLFWwindow* window, int button, int action, int mods)
 {
     if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-    {
-       double xpos, ypos;
+    {        double xpos, ypos;
        //getting cursor position
         glfwGetCursorPos(window, &xpos, &ypos);
-     	newNodeLeaf.createNode(Q,xpos,ypos);
+	 newNodeLeaf.createNode(Q,xpos,ypos);
 	std::cout << "Node created at Position  (" << xpos << "," << ypos <<").\n";
     }
 }
@@ -63,7 +62,7 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
     
 		else if(key==GLFW_KEY_2&& action == GLFW_PRESS){//to connect edges
 				std::cout<<"Created nodes are\n\n\n\n\n";
-					Q.Display();
+				//	Q.Display();
 					Q.Delete();
 	   		// glfwSetMouseButtonCallback(window,mouse_button_callback_forEdgeJoin);
     	}

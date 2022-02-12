@@ -4,5 +4,6 @@
 class Graph{
 pubic:
 	
-};:
+	
+};
 #endif

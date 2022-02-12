@@ -1,2 +1,2 @@
- g++ Main.cpp Includes/VAO.cpp Includes/VBO.cpp Includes/EBO.cpp Includes/ShaderClass.cpp  -o main glad.c -ldl -lglfw
+ g++ Main.cpp Includes/VAO.cpp Includes/VBO.cpp Includes/EBO.cpp Includes/ShaderClass.cpp Includes/Node.cpp  -o main glad.c -ldl -lglfw
 

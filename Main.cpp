@@ -56,6 +56,7 @@ int main(){
 
 	glClearColor(0.1f,0.1f,0.1f,0.5f);
 	while(!glfwWindowShouldClose(window)){
+		glfwPollEvents();
 		glfwSetKeyCallback(window,key_callback);
 		glClear(GL_COLOR_BUFFER_BIT);
 		shaderObj.Activate();//activate shader
@@ -63,7 +64,6 @@ int main(){
 		glLineWidth(20);
 		glDrawElements(GL_LINES,8,GL_UNSIGNED_INT,0);
 		glfwSwapBuffers(window);
-		glfwPollEvents();
 	}
 	glfwTerminate();
 
