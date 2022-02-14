@@ -3,6 +3,8 @@
 #include<iostream>
 #include<stdlib.h>
 #include<vector>
+#include<ctime>
+#include<stdlib.h>
 class Node;
 class node;
 class NodeTree;
@@ -17,12 +19,14 @@ class Node{
 };
 class NodeTree{
 	Node* root;
-	int *nodeID;
+	int *nodeID;i//for node id and counting number of nodes
 	public:
 	NodeTree();
 	void createNode(Queue&,double,double);
 	void joinNode(Node*,Node*);
 	void flagSrcDest(Node*,Node*);
+	void getTwoNodeIdRandom(Queue&);
+	int selectRandSrcDest();
 };
 //Queue implementation using linked list
 class node{
@@ -38,7 +42,6 @@ class Queue{
 	Node*Dequeue(int key);//for dequeueAll node address
 	void Delete();//delete all Node and nodes in Linked list
 	void Display();
-	void getTwoNodes();
 };
 
 

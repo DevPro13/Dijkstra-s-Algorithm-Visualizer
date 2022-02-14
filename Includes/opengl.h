@@ -24,35 +24,10 @@ void mouse_button_callback_forNodeCreate(GLFWwindow* window, int button, int act
     {        double xpos, ypos;
        //getting cursor position
         glfwGetCursorPos(window, &xpos, &ypos);
-	 newNodeLeaf.createNode(Q,xpos,ypos);
+	 newNodeLeaf.createNode(Q,xpos,ypos);//create node at that position
 	std::cout << "Node created at Position  (" << xpos << "," << ypos <<").\n";
     }
 }
-
-void mouse_button_callback_forEdgeJoin(GLFWwindow* window,int button, int action, int mods)
-{
-    if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-    {
-       double xpos, ypos;
-       //getting cursor position
-       glfwGetCursorPos(window, &xpos, &ypos);
-     //  newNodeLeaf.joinNode(xpos,ypos);
-	std::cout << "Node selected at Position  (" << xpos << "," << ypos <<".\n";
-    }
-}
-
-void mouse_button_callback_forSrcDestSelect(GLFWwindow* window,int button, int action, int mods)
-{
-    if(button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-    {
-       double xpos, ypos;
-       //getting cursor position
-       glfwGetCursorPos(window, &xpos, &ypos);
-     //  newNodeLeaf.flagSrcDest(xpos,ypos);
-	std::cout << "Node selected at Position  (" << xpos << "," << ypos <<".\n";
-    }
-}
-
 
 void key_callback(GLFWwindow *window, int key, int scancode, int action, int mods)
 {
@@ -61,13 +36,13 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
     }
     
 		else if(key==GLFW_KEY_2&& action == GLFW_PRESS){//to connect edges
-				std::cout<<"Created nodes are\n\n\n\n\n";
-				//	Q.Display();
-					Q.Delete();
-	   		// glfwSetMouseButtonCallback(window,mouse_button_callback_forEdgeJoin);
-    	}
+					newNodeLeaf.getTwoNodeIdRandom(Q);
+				}
 		else if(key==GLFW_KEY_3&& action == GLFW_PRESS){//to select src and destination
-	    			glfwSetMouseButtonCallback(window,mouse_button_callback_forSrcDestSelect);
+						int srcID=newNodeLeaf.selectRandSrcDest();
+						int destID=newNodeLeaf.selectRandSrcDest();
+						while(srcID==destID)destID=newNodeLeaf.selectRandSrcDest();
+
 					      }
 		else if(key==GLFW_KEY_4&& action == GLFW_PRESS){
     }
