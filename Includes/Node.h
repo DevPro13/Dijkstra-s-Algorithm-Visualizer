@@ -11,7 +11,7 @@ class NodeTree;
 class Queue;
 class Node{
 	public:
-	std::vector<Node*>Edges;//stores edges
+	std::vector<Node*>Edges;//stores edges id
 	bool flagSrc=false;//flag node is destination
 	bool flagDest=false;//flag node is source
 	double xpos,ypos;//node position
@@ -19,13 +19,13 @@ class Node{
 };
 class NodeTree{
 	Node* root;
-	int *nodeID;i//for node id and counting number of nodes
+	int *nodeID;//for node id and counting number of nodes
 	public:
 	NodeTree();
-	void createNode(Queue&,double,double);
-	void joinNode(Node*,Node*);
-	void flagSrcDest(Node*,Node*);
-	void getTwoNodeIdRandom(Queue&);
+	void createNode(Queue& Q,double xpos,double ypos);
+	void joinNode(Node*node1,Node*node2);
+	void flagSrcDest(Node*node1,Node*node2);
+	void getTwoNodeIdRandom(Queue&Q);
 	int selectRandSrcDest();
 };
 //Queue implementation using linked list
@@ -42,6 +42,7 @@ class Queue{
 	Node*Dequeue(int key);//for dequeueAll node address
 	void Delete();//delete all Node and nodes in Linked list
 	void Display();
+	void DisplayEdgeInfo();
 };
 
 
