@@ -27,22 +27,10 @@ int main(){
         return -1;
     }
     // set up vertex data (and buffer(s)) and configure vertex attributes
-    // ------------------------------------------------------------------
-	GLfloat vertices[]={
-		//vertices		//color			//texture coordinate
-		1.0f,1.0f,0.0f,		1.0f,0.0f,0.0f,		1.0f,1.0f,
-		-1.0f,1.0f,0.0f,	0.0f,1.0f,0.0f,		-1.0f,1.0f,
-		-1.0f,-0.5f,0.0f,	0.0f,0.0f,1.0f,		-1.0f,-0.5f,
-		1.0f,-0.5f,0.0f,	1.0f,0.5f,1.0f,		1.0f,-0.5f
-	};
-	GLuint indices[]={
-		0,1,
-		1,2,
-		2,3,
-		3,0
-	};
 	glfwMakeContextCurrent(window);
-	Shader shaderObj("Shaders/shader.vs","Shader/shader.fs");
+	Shader shaderObj("Shaders/shader.vs","Shader/shader.fs");	float vertices[]={};
+	unsigned int indices[]={};
+
 	VAO vao1;
 	vao1.Bind();
 	VBO vbo1(vertices,sizeof(vertices));
@@ -61,7 +49,6 @@ int main(){
 		glClear(GL_COLOR_BUFFER_BIT);
 		shaderObj.Activate();//activate shader
 		vao1.Bind();//bind vao
-		glLineWidth(20);
 		glDrawElements(GL_LINES,8,GL_UNSIGNED_INT,0);
 		glfwSwapBuffers(window);
 	}

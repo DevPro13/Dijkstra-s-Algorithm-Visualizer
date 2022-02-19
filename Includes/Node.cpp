@@ -15,7 +15,6 @@ void NodeTree::createNode(Queue& Q,double xpos,double ypos){
 		root->xpos=xpos;
 		root->ypos=ypos;
 		root->id=*nodeID;
-		root->Edges.clear();
 		Q.Enqueue(root);		
 	}
 	else{
@@ -23,13 +22,11 @@ void NodeTree::createNode(Queue& Q,double xpos,double ypos){
 		newNode->xpos=xpos;
 		newNode->ypos=ypos;
 		newNode->id=*nodeID;
-		newNode->Edges.clear();
 		Q.Enqueue(newNode);
 	}
 }
 void NodeTree::joinNode(Node* node1,Node* node2){
-	node1->Edges.push_back(node2);
-	node2->Edges.push_back(node1);
+	node1->Edges->Enqueue(node2);
 }
 void NodeTree::flagSrcDest(Node*node1,Node*node2){
 	node1->flagSrc=true;
@@ -38,15 +35,15 @@ void NodeTree::flagSrcDest(Node*node1,Node*node2){
 void NodeTree::getTwoNodeIdRandom(Queue&Q){
 	//randoming get two node id.. using and join them
 	int numNodes=*nodeID;
-	for(int k=0;k<=numNodes;++k)Q.Dequeue(k)->Edges.clear();//resizing vector
+	Queue edges[numNodes];
 	for(int i=0;i<=numNodes;++i)
-	{	srand(time(0));
+	{	Q.Dequeue(i)->Edges=&edges[i];
+		srand(time(0));
 		for(int j=i+1;j<=numNodes;++j){
 			if(rand()%2==1||rand()%13==0||rand()%4==3){
 				std::cout<<"Node id "<<i<<" is joined with node id "<<j<<std::endl;
 				joinNode(Q.Dequeue(i),Q.Dequeue(j));//join them
-							std::cout<<"This line is working\n";
-			}
+									}
 		}
 	}
 }
@@ -114,11 +111,8 @@ void Queue::DisplayEdgeInfo(){
 	}
 	node*tmphead=head;
 	while(tmphead!=NULL){
-		auto it=tmphead->newTreeNode->Edges.begin();
-		std::cout<<"node "<<tmphead->newTreeNode->id<<"is edged with"<<std::endl;
-		for(;it!=tmphead->newTreeNode->Edges.end();it++)
-		{	std::cout<<"node "<<(*it)->id<<std::endl;
-		}
+		node*tmpedge=tmphead->newTreeNode->Edges->head;
+		std::cout<<"node "<<tmphead->newTreeNode->id<<"is edged with"<<tmpedge->newTreeNode<<std::endl;
 		tmphead=tmphead->next;
 	}
 }

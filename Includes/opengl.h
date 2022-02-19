@@ -45,6 +45,7 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 
 					      }
 		else if(key==GLFW_KEY_4&& action == GLFW_PRESS){
+			Q.DisplayEdgeInfo();
     }
 		else if(key==GLFW_KEY_ESCAPE&& action == GLFW_PRESS){//exit the screen
         		glfwSetWindowShouldClose(window, true);

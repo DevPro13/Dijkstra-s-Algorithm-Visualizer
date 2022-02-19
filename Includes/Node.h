@@ -2,7 +2,6 @@
 #define NODE_H
 #include<iostream>
 #include<stdlib.h>
-#include<vector>
 #include<ctime>
 #include<stdlib.h>
 class Node;
@@ -11,7 +10,7 @@ class NodeTree;
 class Queue;
 class Node{
 	public:
-	std::vector<Node*>Edges;//stores edges id
+	Queue *Edges;//edges to this node
 	bool flagSrc=false;//flag node is destination
 	bool flagDest=false;//flag node is source
 	double xpos,ypos;//node position
@@ -35,8 +34,8 @@ class node{
 	node* next;//for next node address in linked list
 };
 class Queue{
-	node *head;//for head node
 	public:
+	node *head;//for head no
 	Queue();
 	void Enqueue(Node*);
 	Node*Dequeue(int key);//for dequeueAll node address
@@ -44,6 +43,4 @@ class Queue{
 	void Display();
 	void DisplayEdgeInfo();
 };
-
-
 #endif
