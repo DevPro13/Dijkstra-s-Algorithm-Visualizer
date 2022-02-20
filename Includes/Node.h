@@ -10,7 +10,6 @@ class NodeTree;
 class Queue;
 class Node{
 	public:
-	Queue *Edges;//edges to this node
 	bool flagSrc=false;//flag node is destination
 	bool flagDest=false;//flag node is source
 	double xpos,ypos;//node position
@@ -22,9 +21,8 @@ class NodeTree{
 	public:
 	NodeTree();
 	void createNode(Queue& Q,double xpos,double ypos);
-	void joinNode(Node*node1,Node*node2);
 	void flagSrcDest(Node*node1,Node*node2);
-	void getTwoNodeIdRandom(Queue&Q);
+	int totalNodesCreated();
 	int selectRandSrcDest();
 };
 //Queue implementation using linked list
@@ -41,6 +39,5 @@ class Queue{
 	Node*Dequeue(int key);//for dequeueAll node address
 	void Delete();//delete all Node and nodes in Linked list
 	void Display();
-	void DisplayEdgeInfo();
 };
 #endif

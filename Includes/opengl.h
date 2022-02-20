@@ -9,8 +9,11 @@
 #include"EBO.h"
 #include"VBO.h"
 //#include"Render.h"
+#include"graph.hpp"
 NodeTree newNodeLeaf;
 Queue Q;
+Edge edge;
+Graph graph;
 void initializeGLFW(){
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR,4);
@@ -36,7 +39,8 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
     }
     
 		else if(key==GLFW_KEY_2&& action == GLFW_PRESS){//to connect edges
-					newNodeLeaf.getTwoNodeIdRandom(Q);
+				edge.JoinNodesRandom(Q,newNodeLeaf.totalNodesCreated());//join nodes randomly using combination
+				graph.CreateGraph(edge,Q.newNodeLeaf.totalNodesCreated());//create graph
 				}
 		else if(key==GLFW_KEY_3&& action == GLFW_PRESS){//to select src and destination
 						int srcID=newNodeLeaf.selectRandSrcDest();
@@ -45,7 +49,7 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 
 					      }
 		else if(key==GLFW_KEY_4&& action == GLFW_PRESS){
-			Q.DisplayEdgeInfo();
+		edge.ShowEdgeInfo();
     }
 		else if(key==GLFW_KEY_ESCAPE&& action == GLFW_PRESS){//exit the screen
         		glfwSetWindowShouldClose(window, true);
