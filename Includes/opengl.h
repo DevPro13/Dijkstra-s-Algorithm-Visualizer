@@ -40,7 +40,8 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
     
 		else if(key==GLFW_KEY_2&& action == GLFW_PRESS){//to connect edges
 				edge.JoinNodesRandom(Q,newNodeLeaf.totalNodesCreated());//join nodes randomly using combination
-				graph.CreateGraph(edge,Q.newNodeLeaf.totalNodesCreated());//create graph
+				graph.CreateGraph(edge,newNodeLeaf.totalNodesCreated());//create graph
+				graph.ShowGraph();
 				}
 		else if(key==GLFW_KEY_3&& action == GLFW_PRESS){//to select src and destination
 						int srcID=newNodeLeaf.selectRandSrcDest();
@@ -55,7 +56,5 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
         		glfwSetWindowShouldClose(window, true);
     
 	}
-
-
 }
 #endif
