@@ -8,15 +8,15 @@
 #include<cmath>
 typedef std::pair<Node*,std::vector<Node*>> link;
 class Edge{
-	std::map<Node*,std::vector<Node*>>Edges;
 	public:
+	std::map<Node*,std::vector<Node*>>Edges;
 	Edge();
 	void JoinNodesRandom(Queue&Q,int nodes);	
 	void ShowEdgeInfo();	
 };
 class Graph{
-	static int V;
-	double graph[][V+1];
+	int V;
+	double *graph;
 	public:
 	Graph();
 	void CreateGraph(Edge&edge,int nodes);

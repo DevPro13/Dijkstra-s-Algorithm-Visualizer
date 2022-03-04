@@ -1,4 +1,4 @@
-#include"graph.hpp"
+#include"Graph.hpp"
 Edge::Edge(){}
 void Edge::JoinNodesRandom(Queue&Q,int nodes){
 	for(int i=0;i<nodes;++i)
@@ -25,29 +25,37 @@ void Edge::ShowEdgeInfo(){
 //for graph
 Graph::Graph(){}
 void Graph::CreateGraph(Edge&edge,int nodes){
-	V=nodes;
+	V=nodes+1;
+	double tempGraph[V][V];
+	graph=(double*)malloc(V*V*sizeof(double));
 	for(int i=0;i<=nodes;++i){
 		for(int j=0;j<=nodes;++j){
-			graph[i][j]=0;
+		tempGraph[i][j]=0;
+		*(graph+i*V+j)=0;
 		}
 	}
-	for(auto it=Edges.begin();it!=Edges.end();++it){
+	for(auto it=edge.Edges.begin();it!=edge.Edges.end();++it){
 		for(auto itr=it->second.begin();itr!=it->second.end();++itr){
 			double dist=getNodeDistance(it->first->xpos,it->first->ypos,(*itr)->xpos,(*itr)->ypos);
-			graph[it->first->id][(*itr)->id]=dist;
-			graph[(*itr)->id][it->first->id]=dist;
+			tempGraph[it->first->id][(*itr)->id]=dist;
+			tempGraph[(*itr)->id][it->first->id]=dist;
+			std::cout<<"distance between nose id "<<it->first->id<<" and node id "<<(*itr)->id<<" is "<<dist<<std::endl;
 		}
 	}
-
+	for(int i=0;i<=nodes;++i){
+		for(int j=0;j<=nodes;++j){
+	*(graph+i*V+j)=tempGraph[i][j];
+		}
+	}
 }
 double Graph::getNodeDistance(double x1,double y1,double x2,double y2){
 	return sqrt(pow((x2-x1),2)+pow((y2-y1),2));
 }
 void Graph::ShowGraph(){
 	for(int i=0;i<V;++i){
-		for(int j=0;i<V;++j){
-			std::cout<<graph[i][j]<<"\t";
+		for(int j=0;j<V;++j){
+		std::cout<<*(graph+i*V+j)<<"\t";
 		}
-		std::cout<<"\t";
+		std::cout<<"\n";
 	}
 }

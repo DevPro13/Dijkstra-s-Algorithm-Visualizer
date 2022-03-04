@@ -9,7 +9,7 @@
 #include"EBO.h"
 #include"VBO.h"
 //#include"Render.h"
-#include"graph.hpp"
+#include"Graph.hpp"
 NodeTree newNodeLeaf;
 Queue Q;
 Edge edge;
