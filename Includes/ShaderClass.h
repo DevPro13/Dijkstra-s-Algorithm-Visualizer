@@ -11,6 +11,7 @@ public:
     void Activate();//activate shaers program
     void Delete();//Delete shaders program
     void testError();
+    void DrawBuffer(GLenum type,int size);
 
 };
 std::string get_file_data(const char*);

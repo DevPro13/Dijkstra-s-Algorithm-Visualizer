@@ -8,12 +8,14 @@
 #include"VAO.h"
 #include"EBO.h"
 #include"VBO.h"
-//#include"Render.h"
+#include"Render.h"
 #include"Graph.hpp"
 NodeTree newNodeLeaf;
 Queue Q;
 Edge edge;
 Graph graph;
+Render render;
+VAO *vaoNodePtr,*vaoEdgePtr,*vaoSrcDestPtr,*vaoPathPtr;
 void initializeGLFW(){
 	glfwInit();
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR,4);
@@ -28,6 +30,7 @@ void mouse_button_callback_forNodeCreate(GLFWwindow* window, int button, int act
        //getting cursor position
         glfwGetCursorPos(window, &xpos, &ypos);
 	 newNodeLeaf.createNode(Q,xpos,ypos);//create node at that position
+         render.renderNodes(vaoNodePtr,xpos,ypos);
 	std::cout << "Node created at Position  (" << xpos << "," << ypos <<").\n";
     }
 }

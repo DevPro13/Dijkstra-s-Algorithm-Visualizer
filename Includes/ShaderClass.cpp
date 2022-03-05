@@ -14,6 +14,8 @@ Shader::Shader(const char*vertFIle,const  char* fragFile){
 	std::string fragmentCode=get_file_data(fragFile);
   	 const char *vertexSrc=vertexCode.c_str();
   	 const char *fragmentSrc=fragmentCode.c_str();
+	 std::cout<<vertexSrc<<std::endl;
+	 std::cout<<fragmentSrc<<std::endl;
     // Create Vertex Shader Object and get its reference
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	// Attach Vertex Shader source to the Vertex Shader Object
@@ -30,7 +32,7 @@ Shader::Shader(const char*vertFIle,const  char* fragFile){
 
 	// Create Shader Program Object and get its reference
 	ID = glCreateProgram();
-	// Attach the Vertex and Fragment Shaders to the Shader Program
+	// Attach the Vertex and Fragment Shaders to the Shader Program:
 	glAttachShader(ID, vertexShader);
 	glAttachShader(ID, fragmentShader);
 	// Wrap-up/Link all the shaders together into the Shader Program
@@ -46,4 +48,7 @@ void Shader::Activate(){
 }
 void Shader::Delete(){
     glDeleteProgram(ID);
+}
+void Shader::DrawBuffer(GLenum type,int size){
+	glDrawElements(type,size,GL_UNSIGNED_INT,0);
 }

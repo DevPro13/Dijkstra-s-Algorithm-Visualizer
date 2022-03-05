@@ -8,7 +8,6 @@ public:
     VAO();
     void LinkVBOpos(VBO&,GLuint);
     void LinkVBOcolor(VBO&,GLuint);
-    void LinkVBOtexture(VBO&,GLuint);
     void Bind();
     void Unbind();
     void Delete();
