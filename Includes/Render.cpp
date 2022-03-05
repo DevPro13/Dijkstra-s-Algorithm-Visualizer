@@ -14,12 +14,26 @@ void Render::renderNodes(VAO*vaoNodePtr,double xpos,double ypos){
 			NodePositionIndices.push_back(NodePositionIndices.size());
 	
 		}
-		vaoNodePtr->Bind();
-		VBO vbo1(NodesPositions);
-		EBO ebo1(NodePositionIndices);
-		vaoNodePtr->LinkVBOpos(vbo1,0);//for position
-		vaoNodePtr->LinkVBOcolor(vbo1,1);//for color
-		vaoNodePtr->Unbind();
-		vbo1.Unbind();
-		ebo1.Unbind();
+
+		bindVertices(vaoNodePtr,NodesPositions,NodePositionIndices);
+	}
+void Render::renderEdges(Edge&edge,VAO*vaoEdgePtr){
+	for(auto itr=edge.Edges.begin();itr!=edge.Edges.end();++itr){
+		for(auto it=itr->second.begin();it!=itr->second.end();++it){
+			std::vector<GLuint>indices={(unsigned int)itr->first->id,(unsigned int)(*it)->id};
+			EdgeIndices.reserve(EdgeIndices.size()+indices.size());
+			EdgeIndices.insert(EdgeIndices.end(),indices.begin(),indices.end());
+		}
+	}
+	bindVertices(vaoEdgePtr,NodesPositions,EdgeIndices);
+}
+void Render::bindVertices(VAO*vao,std::vector<GLfloat>vertices,std::vector<GLuint>indices){
+	vao->Bind();
+	VBO vbo(vertices);
+	EBO ebo(indices);
+	vao->LinkVBOpos(vbo,0);//for position
+	vao->LinkVBOcolor(vbo,1);//for color
+	vao->Unbind();
+	vbo.Unbind();
+	ebo.Unbind();
 }

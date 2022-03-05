@@ -49,9 +49,11 @@ int main(){
 	vaoPath.Unbind();
 	vbo2.Unbind();
 	ebo2.Unbind();
+
 	VAO vaoEdge;
+	vaoEdgePtr=&vaoEdge;
 	vaoEdge.Bind();
-	VBO vbo3(render.EdgeVertices);
+	VBO vbo3(render.NodesPositions);
 	EBO ebo3(render.EdgeIndices);
 	vaoEdge.LinkVBOpos(vbo3,0);
 	vaoEdge.LinkVBOcolor(vbo3,1);
@@ -74,7 +76,7 @@ int main(){
 		glClear(GL_COLOR_BUFFER_BIT);
 		shaderObj.Activate();//activate shader
 		vaoNodePtr->Bind();//bind nodes array attributes
-		glPointSize(20);
+		glPointSize(30);
 		glEnable(GL_BLEND);
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable(GL_POINT_SMOOTH );
@@ -83,8 +85,9 @@ int main(){
   		 glBlendFunc(GL_NONE, GL_NONE);
     		glDisable(GL_BLEND);
 
-		vaoEdge.Bind();//bind edge array attributes
-		shaderObj.DrawBuffer(GL_LINES,render.EdgeVertices.size());
+		vaoEdgePtr->Bind();//bind edge array attributes
+		shaderObj.DrawBuffer(GL_LINES,render.EdgeIndices.size());
+
 		vaoSrcDest.Bind();//bind srcDest Node array attributes
 		shaderObj.DrawBuffer(GL_LINES,render.SrcDestIndices.size());
 		vaoPath.Bind();//bind path array attributes

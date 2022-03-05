@@ -45,6 +45,7 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 				edge.JoinNodesRandom(Q,newNodeLeaf.totalNodesCreated());//join nodes randomly using combination
 				graph.CreateGraph(edge,newNodeLeaf.totalNodesCreated());//create graph
 				graph.ShowGraph();
+				render.renderEdges(edge,vaoEdgePtr);
 				}
 		else if(key==GLFW_KEY_3&& action == GLFW_PRESS){//to select src and destination
 						int srcID=newNodeLeaf.selectRandSrcDest();
