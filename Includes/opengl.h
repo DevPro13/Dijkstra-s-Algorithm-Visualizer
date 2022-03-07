@@ -51,7 +51,9 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 						int srcID=newNodeLeaf.selectRandSrcDest();
 						int destID=newNodeLeaf.selectRandSrcDest();
 						while(srcID==destID)destID=newNodeLeaf.selectRandSrcDest();
-
+						Node* srcnod=Q.Dequeue(srcID);
+						Node* destnod=Q.Dequeue(destID);
+						render.renderSrcDestNodes(vaoSrcDestPtr,srcnod->xpos,srcnod->ypos,destnod->xpos,destnod->ypos);//render src snd dest nodes
 					      }
 		else if(key==GLFW_KEY_4&& action == GLFW_PRESS){
 		edge.ShowEdgeInfo();

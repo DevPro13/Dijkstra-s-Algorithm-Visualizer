@@ -22,7 +22,7 @@ public://i am bad at coding
     Render();
     void renderNodes(VAO*vaoNodePtr,double xpos,double ypos);
     void renderEdges(Edge&edge,VAO*vaoEdgePtr);
-    void renderSrcDestNodes();
+    void renderSrcDestNodes(VAO*vaoSrcDestPtr,double x1,double y1,double x2,double y2);
     void renderDijkstrasPath();
     void bindVertices(VAO*vao,std::vector<GLfloat>vertices,std::vector<GLuint>indices);
 };

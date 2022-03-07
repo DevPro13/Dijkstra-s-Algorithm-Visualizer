@@ -41,6 +41,7 @@ int main(){
 	ebo1.Unbind();
 
 	VAO vaoPath;
+	vaoPathPtr=&vaoPath;
 	vaoPath.Bind();
 	VBO vbo2(render.PathVertices);
 	EBO ebo2(render.PathIndices);
@@ -60,7 +61,9 @@ int main(){
 	vaoEdge.Unbind();
 	vbo3.Unbind();
 	ebo3.Unbind();
+
 	VAO vaoSrcDest;
+	vaoSrcDestPtr=&vaoSrcDest;
 	vaoSrcDest.Bind();
 	VBO vbo4(render.SrcDestVertices);
 	EBO ebo4(render.SrcDestIndices);
@@ -81,17 +84,24 @@ int main(){
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable(GL_POINT_SMOOTH );
 		shaderObj.DrawBuffer(GL_POINTS,render.NodePositionIndices.size());
-		 glDisable(GL_POINT_SMOOTH);
-  		 glBlendFunc(GL_NONE, GL_NONE);
-    		glDisable(GL_BLEND);
 
+		glEnable( GL_LINE_SMOOTH );	
+		glLineWidth(0.5);
 		vaoEdgePtr->Bind();//bind edge array attributes
 		shaderObj.DrawBuffer(GL_LINES,render.EdgeIndices.size());
-
 		vaoSrcDest.Bind();//bind srcDest Node array attributes
-		shaderObj.DrawBuffer(GL_LINES,render.SrcDestIndices.size());
+		shaderObj.DrawBuffer(GL_POINTS,render.SrcDestIndices.size());
+		
+		glLineWidth(30);
 		vaoPath.Bind();//bind path array attributes
-		shaderObj.DrawBuffer(GL_POINT,render.PathIndices.size());
+		shaderObj.DrawBuffer(GL_LINES,render.PathIndices.size());
+
+	       	glDisable(GL_POINT_SMOOTH);
+  		 glBlendFunc(GL_NONE, GL_NONE);
+    		glDisable(GL_BLEND);
+		glDisable(GL_LINE_SMOOTH); 
+
+
 		glfwSwapBuffers(window);
 	}
 	vaoNode.Delete();

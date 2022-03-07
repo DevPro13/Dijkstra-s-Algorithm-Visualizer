@@ -27,6 +27,19 @@ void Render::renderEdges(Edge&edge,VAO*vaoEdgePtr){
 	}
 	bindVertices(vaoEdgePtr,NodesPositions,EdgeIndices);
 }
+void Render::renderSrcDestNodes(VAO*vaoSrcDestPtr,double x1,double y1,double x2,double y2){
+	float xpt1=-1.0f+2*(float)x1/(float)SCR_WIDTH;
+	float ypt1=1.0f-2*(float)y1/(float)SCR_HEIGHT;
+	float xpt2=-1.0f+2*(float)x2/(float)SCR_WIDTH;
+	float ypt2=1.0f-2*(float)y2/(float)SCR_HEIGHT;
+	SrcDestVertices={xpt1,ypt1,0.0f,0.0f,1.0f,0.0f,
+		       	xpt2,ypt2,0.0f,1.0f,0.0f,0.0f};
+	SrcDestIndices={0,1};
+	bindVertices(vaoSrcDestPtr,SrcDestVertices,SrcDestIndices);
+}
+//void Render::renderDijkstrasPath(VAO*vaoPathPtr){
+
+//}
 void Render::bindVertices(VAO*vao,std::vector<GLfloat>vertices,std::vector<GLuint>indices){
 	vao->Bind();
 	VBO vbo(vertices);
