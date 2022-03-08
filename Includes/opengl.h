@@ -10,11 +10,13 @@
 #include"VBO.h"
 #include"Render.h"
 #include"Graph.hpp"
+#include"Dijkstra.hpp"
 NodeTree newNodeLeaf;
 Queue Q;
 Edge edge;
 Graph graph;
 Render render;
+Dijkstra dijkstra(&graph);
 VAO *vaoNodePtr,*vaoEdgePtr,*vaoSrcDestPtr,*vaoPathPtr;
 void initializeGLFW(){
 	glfwInit();
@@ -42,6 +44,7 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
     }
     
 		else if(key==GLFW_KEY_2&& action == GLFW_PRESS){//to connect edges
+	    			glfwSetMouseButtonCallback(window,NULL);
 				edge.JoinNodesRandom(Q,newNodeLeaf.totalNodesCreated());//join nodes randomly using combination
 				graph.CreateGraph(edge,newNodeLeaf.totalNodesCreated());//create graph
 				graph.ShowGraph();
@@ -56,7 +59,8 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 						render.renderSrcDestNodes(vaoSrcDestPtr,srcnod->xpos,srcnod->ypos,destnod->xpos,destnod->ypos);//render src snd dest nodes
 					      }
 		else if(key==GLFW_KEY_4&& action == GLFW_PRESS){
-		edge.ShowEdgeInfo();
+			
+				dijkstra.generatePathNodeVertex(vaoPathPtr,&Q,&render);
     }
 		else if(key==GLFW_KEY_ESCAPE&& action == GLFW_PRESS){//exit the screen
         		glfwSetWindowShouldClose(window, true);

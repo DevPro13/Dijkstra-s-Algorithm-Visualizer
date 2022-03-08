@@ -92,8 +92,8 @@ int main(){
 		vaoSrcDest.Bind();//bind srcDest Node array attributes
 		shaderObj.DrawBuffer(GL_POINTS,render.SrcDestIndices.size());
 		
-		glLineWidth(30);
-		vaoPath.Bind();//bind path array attributes
+		glLineWidth(15);
+		vaoPathPtr->Bind();//bind path array attributes
 		shaderObj.DrawBuffer(GL_LINES,render.PathIndices.size());
 
 	       	glDisable(GL_POINT_SMOOTH);
@@ -104,14 +104,14 @@ int main(){
 
 		glfwSwapBuffers(window);
 	}
-	vaoNode.Delete();
+	vaoNodePtr->Delete();
 	vbo1.Delete();
 	vbo2.Delete();
 	vbo3.Delete();
 	vbo4.Delete();
-	vaoPath.Delete();
-	vaoSrcDest.Delete();
-	vaoEdge.Delete();
+	vaoPathPtr->Delete();
+	vaoSrcDestPtr->Delete();
+	vaoEdgePtr->Delete();
 	shaderObj.Delete();
 	glfwTerminate();
 	return 0;

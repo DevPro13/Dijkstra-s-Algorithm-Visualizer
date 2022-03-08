@@ -37,9 +37,6 @@ void Render::renderSrcDestNodes(VAO*vaoSrcDestPtr,double x1,double y1,double x2,
 	SrcDestIndices={0,1};
 	bindVertices(vaoSrcDestPtr,SrcDestVertices,SrcDestIndices);
 }
-//void Render::renderDijkstrasPath(VAO*vaoPathPtr){
-
-//}
 void Render::bindVertices(VAO*vao,std::vector<GLfloat>vertices,std::vector<GLuint>indices){
 	vao->Bind();
 	VBO vbo(vertices);
