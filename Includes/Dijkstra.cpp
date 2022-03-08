@@ -1,20 +1,18 @@
 #include"Dijkstra.hpp"
-Dijkstra::Dijkstra(Graph*grph){
-	graph=grph;
-}
-int Dijkstra::findShortestDist(int*dist,bool*sptVert,bool*isEdge){
+	Dijkstra::Dijkstra(Queue*q,Render*path,Graph*grph):graph(grph),Q(q),pathObj(path){}
+int Dijkstra::findShortestDist(double*dist,bool*sptVert,bool*isEdge,int V){
         int index=0;
         double min=100000;
         for(int i=0;i<V;++i){
                 if(min>=*(dist+i)&&!*(sptVert+i)&&*(isEdge+i))
                 {
                         index=i;
-                        double=*(dist+i);
+                        min=*(dist+i);
                 }
 }
 return index;
 }
-void Dijkstra::findShortestPath(int*graph,int V,int src,int dest){
+void Dijkstra::findShortestPath(int V,int src,int dest){
         double dist[V];
         dist[src]=0;//source distance 0
         bool sptVert[V];//flag true is node visited
@@ -27,21 +25,20 @@ void Dijkstra::findShortestPath(int*graph,int V,int src,int dest){
         isEdge[src]=true;
 	dist[src]=0;
         for(int count=0;count<V;++count){
-                int u=findShortestDist(&dist[0],&sptVert[0],&isEdge[0]);
+                int u=findShortestDist(&dist[0],&sptVert[0],&isEdge[0],V);
                 for(int i=0;i<V;++i)isEdge[i]=false;
                 PathNodes.push_back(Q->Dequeue(u));
                 sptVert[u]=true;
                         for(int v=0;v<V;v++){
-                        if(graph[u][v]!=0)isEdge[v]=true;
-                if(*(graph+u*V+v)!=0)&&(dist[u]+*(graph+u*V+v)<dist[v]){
-                        dist[v]=dist[u]+*(graph+u*V+v);
+                        if(*(graph->graph+u*V+v)!=0)isEdge[v]=true;
+                if((*(graph->graph+u*V+v)!=0)&&(dist[u]+*(graph->graph+u*V+v)<dist[v])){
+                        dist[v]=dist[u]+*(graph->graph+u*V+v);
                         }
                 }
                 if(u==dest){break;}
         }
 }
-void Dijkstra::generatePathNodeVertex(VAO*vaoPathPtr,Queue*Q,Render*pathObj){
-
+void Dijkstra::generatePathNodeVertex(VAO*vaoPathPtr){
 	if(pathObj->PathIndices.size()!=0){
 		pathObj->PathIndices.resize(0);
 		pathObj->PathVertices.resize(0);

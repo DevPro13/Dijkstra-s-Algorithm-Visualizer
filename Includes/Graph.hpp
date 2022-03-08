@@ -15,9 +15,9 @@ class Edge{
 	void ShowEdgeInfo();	
 };
 class Graph{
+	public:
 	int V;
 	double *graph;
-	public:
 	Graph();
 	void CreateGraph(Edge&edge,int nodes);
 	void ShowGraph();

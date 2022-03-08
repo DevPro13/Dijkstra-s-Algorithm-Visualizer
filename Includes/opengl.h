@@ -16,7 +16,7 @@ Queue Q;
 Edge edge;
 Graph graph;
 Render render;
-Dijkstra dijkstra(&graph);
+Dijkstra dijkstra(&Q,&render,&graph);
 VAO *vaoNodePtr,*vaoEdgePtr,*vaoSrcDestPtr,*vaoPathPtr;
 void initializeGLFW(){
 	glfwInit();
@@ -57,11 +57,13 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 						Node* srcnod=Q.Dequeue(srcID);
 						Node* destnod=Q.Dequeue(destID);
 						render.renderSrcDestNodes(vaoSrcDestPtr,srcnod->xpos,srcnod->ypos,destnod->xpos,destnod->ypos);//render src snd dest nodes
-					      }
-		else if(key==GLFW_KEY_4&& action == GLFW_PRESS){
-			
-				dijkstra.generatePathNodeVertex(vaoPathPtr,&Q,&render);
+						dijkstra.findShortestPath(newNodeLeaf.totalNodesCreated()+1,srcID,destID);	
+						dijkstra.generatePathNodeVertex(vaoPathPtr);
     }
+
+					     
+		else if(key==GLFW_KEY_4&& action == GLFW_PRESS){
+		    }
 		else if(key==GLFW_KEY_ESCAPE&& action == GLFW_PRESS){//exit the screen
         		glfwSetWindowShouldClose(window, true);
     
