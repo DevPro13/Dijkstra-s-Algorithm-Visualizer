@@ -4,23 +4,23 @@ Dijkstra::Dijkstra(Graph*grph){
 }
 int Dijkstra::findShortestDist(int*dist,bool*sptVert,bool*isEdge){
         int index=0;
-        int min=10000;
+        double min=100000;
         for(int i=0;i<V;++i){
                 if(min>=*(dist+i)&&!*(sptVert+i)&&*(isEdge+i))
                 {
                         index=i;
-                        min=*(dist+i);
+                        double=*(dist+i);
                 }
 }
 return index;
 }
-void Dijkstra::findShortestPath(int*graph,int src,int dest){
-        int dist[V];
+void Dijkstra::findShortestPath(int*graph,int V,int src,int dest){
+        double dist[V];
         dist[src]=0;//source distance 0
-        bool sptVert[V];
-        bool isEdge[V];
+        bool sptVert[V];//flag true is node visited
+        bool isEdge[V];//flag is either nodes has edges
         for(int i=0;i<V;++i){
-                dist[i]=10000;
+                dist[i]=100000;
                 sptVert[i]=false;
                 isEdge[i]=false;
         }
@@ -33,16 +33,13 @@ void Dijkstra::findShortestPath(int*graph,int src,int dest){
                 sptVert[u]=true;
                         for(int v=0;v<V;v++){
                         if(graph[u][v]!=0)isEdge[v]=true;
-                if((graph[u][v]!=0)&&(dist[u]+graph[u][v])<dist[v]){
-                        dist[v]=dist[u]+graph[u][v];
+                if(*(graph+u*V+v)!=0)&&(dist[u]+*(graph+u*V+v)<dist[v]){
+                        dist[v]=dist[u]+*(graph+u*V+v);
                         }
                 }
                 if(u==dest){break;}
         }
 }
-
-
-
 void Dijkstra::generatePathNodeVertex(VAO*vaoPathPtr,Queue*Q,Render*pathObj){
 
 	if(pathObj->PathIndices.size()!=0){
