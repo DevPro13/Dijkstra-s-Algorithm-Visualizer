@@ -37,6 +37,7 @@ void Dijkstra::findShortestPath(int V,int src,int dest){
                 }
                 if(u==dest){break;}
         }
+	for(auto it=PathNodes.begin();it!=PathNodes.end();++it)std::cout<<(*it)->id<<"\t"<<dist[(*it)->id]<<std::endl;
 }
 void Dijkstra::generatePathNodeVertex(VAO*vaoPathPtr){
 	if(pathObj->PathIndices.size()!=0){
