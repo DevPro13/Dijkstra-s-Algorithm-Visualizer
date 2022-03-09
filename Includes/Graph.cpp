@@ -59,3 +59,6 @@ void Graph::ShowGraph(){
 		std::cout<<"\n";
 	}
 }
+Graph::~Graph(){
+	free(graph);//free allocated memory
+}

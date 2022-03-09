@@ -3,7 +3,6 @@
 #include<iostream>
 #include<stdlib.h>
 #include<ctime>
-#include<stdlib.h>
 class Node;
 class node;
 class NodeTree;
@@ -16,6 +15,7 @@ class Node{
 	int id;//node id or vertex number
 };
 class NodeTree{
+	// this class will add new node in each mouse click and link nodes in Linked list
 	Node* root;
 	int *nodeID;//for node id and counting number of nodes
 	public:
