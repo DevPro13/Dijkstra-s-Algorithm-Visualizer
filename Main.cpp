@@ -1,4 +1,4 @@
-#include"Includes/opengl.h"
+#include"Includes/opengl.h" //all the headers and some opengl initialization are written in opengl.h header file...look opengl.h and Main.cpp side by side for better understanding
 #include<iostream>
 using namespace std;
 #define WINDOW_WIDTH 1080
@@ -9,6 +9,7 @@ void framebuffer_size_callback(GLFWwindow* window, int width, int height)
     glViewport(0, 0, width, height);
 }
 int main(){
+	GuideMenu();//display instrution on screen
 	initializeGLFW();
 	GLFWwindow*window=glfwCreateWindow(WINDOW_WIDTH,WINDOW_HEIGHT,"Dijkstra Algorithm Visualizer",NULL,NULL);
 	if(window==NULL){
@@ -114,5 +115,6 @@ int main(){
 	vaoEdgePtr->Delete();
 	shaderObj.Delete();
 	glfwTerminate();
+	Q.Delete();//Delete all memory allocated for creating nodes
 	return 0;
 }

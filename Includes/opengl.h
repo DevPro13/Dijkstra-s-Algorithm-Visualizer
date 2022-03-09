@@ -56,17 +56,26 @@ void key_callback(GLFWwindow *window, int key, int scancode, int action, int mod
 						while(srcID==destID)destID=newNodeLeaf.selectRandSrcDest();
 						Node* srcnod=Q.Dequeue(srcID);
 						Node* destnod=Q.Dequeue(destID);
+						newNodeLeaf.flagSrcDest(srcnod,destnod);//flag src and destnition as true
 						render.renderSrcDestNodes(vaoSrcDestPtr,srcnod->xpos,srcnod->ypos,destnod->xpos,destnod->ypos);//render src snd dest nodes
-						dijkstra.findShortestPath(newNodeLeaf.totalNodesCreated()+1,srcID,destID);	
+						dijkstra.findShortestPath(newNodeLeaf.totalNodesCreated()+1,srcID,destID);
 						dijkstra.generatePathNodeVertex(vaoPathPtr);
+						newNodeLeaf.flagSrcDest(srcnod,destnod);//flag src and destnition as false again
     }
 
 					     
-		else if(key==GLFW_KEY_4&& action == GLFW_PRESS){
-		    }
 		else if(key==GLFW_KEY_ESCAPE&& action == GLFW_PRESS){//exit the screen
         		glfwSetWindowShouldClose(window, true);
     
 	}
+}
+void GuideMenu(){
+	std::cout<<"\t\tFollow the instrution below to run this program in flow::\n"
+		<<"\t\t\tPress 1 to Enable MouseClick Event function loader and click on screen to draw nodes.\n "
+		<<"\t\t\tPress 2 to Disable Mouseclick Event function loader and program will automatically join edges between nodes and create graph.\n"
+		<<"\t\t\tPress 3 to randomly choose source and destination from the given tree of nodes and apply Dijkstra algorithm to find path between those nodes.\n"
+		<<"\t\t\t\t\t\tNote::Node with Green color is source and with Red Color is Destionation\n"
+		<<"\t\t\tPress ESC ko Quit and Exit!!\n\n\n";
+
 }
 #endif

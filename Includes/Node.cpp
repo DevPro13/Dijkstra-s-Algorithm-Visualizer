@@ -26,8 +26,8 @@ void NodeTree::createNode(Queue& Q,double xpos,double ypos){
 	}
 }
 void NodeTree::flagSrcDest(Node*node1,Node*node2){
-	node1->flagSrc=true;
-	node2->flagDest=true;
+	node1->flagSrc=!node1->flagSrc;
+	node2->flagDest=!node2->flagDest;
 }
 int NodeTree::totalNodesCreated(){
 	return *nodeID;

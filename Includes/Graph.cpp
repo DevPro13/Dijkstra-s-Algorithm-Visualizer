@@ -6,12 +6,12 @@ void Edge::JoinNodesRandom(Queue&Q,int nodes){
 		Node*node1=Q.Dequeue(i);
 		srand(time(0));
 		for(int j=i+1;j<=nodes;++j){
-		if(rand()%2==1||rand()%4==3){
+		if(rand()%2==1||rand()%13==0||rand()%4==3){
 		std::cout<<"Node id "<<i<<" is joined with node id "<<j<<std::endl;
 		edgesContainer.push_back(Q.Dequeue(j));
 		}
        	}	
-		Edges.insert(link(node1,edgesContainer));//link edges
+		Edges.insert(linkEdge(node1,edgesContainer));//link edges
    }
 }
 void Edge::ShowEdgeInfo(){

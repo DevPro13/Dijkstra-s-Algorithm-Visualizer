@@ -6,7 +6,7 @@
 #include<ctime>
 #include<iostream>
 #include<cmath>
-typedef std::pair<Node*,std::vector<Node*>> link;
+typedef std::pair<Node*,std::vector<Node*>>linkEdge;
 class Edge{
 	public:
 	std::map<Node*,std::vector<Node*>>Edges;

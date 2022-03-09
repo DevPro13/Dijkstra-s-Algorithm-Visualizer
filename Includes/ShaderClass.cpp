@@ -14,9 +14,9 @@ Shader::Shader(const char*vertFIle,const  char* fragFile){
 	std::string fragmentCode=get_file_data(fragFile);
   	 const char *vertexSrc=vertexCode.c_str();
   	 const char *fragmentSrc=fragmentCode.c_str();
-	 std::cout<<vertexSrc<<std::endl;
-	 std::cout<<fragmentSrc<<std::endl;
-    // Create Vertex Shader Object and get its reference
+	 //std::cout<<vertexSrc<<std::endl;//Display Vertexshader file content
+	// std::cout<<fragmentSrc<<std::endl;//Display Fragment shader file content
+   	 // Create Vertex Shader Object and get its reference
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	// Attach Vertex Shader source to the Vertex Shader Object
 	glShaderSource(vertexShader, 1, &vertexSrc, NULL);
