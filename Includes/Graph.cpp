@@ -31,8 +31,7 @@ void Graph::CreateGraph(Edge&edge,int nodes){
 	for(int i=0;i<=nodes;++i){
 		for(int j=0;j<=nodes;++j){
 		tempGraph[i][j]=0;
-		*(graph+i*V+j)=0;
-		}
+	}
 	}
 	for(auto it=edge.Edges.begin();it!=edge.Edges.end();++it){
 		for(auto itr=it->second.begin();itr!=it->second.end();++itr){

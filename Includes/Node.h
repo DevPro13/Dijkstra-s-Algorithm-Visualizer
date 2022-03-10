@@ -3,10 +3,10 @@
 #include<iostream>
 #include<stdlib.h>
 #include<ctime>
-class Node;
-class node;
-class NodeTree;
-class Queue;
+class Node;//for storing node created on screen 
+class node;//for implementing linked list
+class NodeTree;//for operating on nodes created on screen
+class Queue;//simple singly linked list just named as Queue
 class Node{
 	public:
 	bool flagSrc=false;//flag node is destination
@@ -25,7 +25,8 @@ class NodeTree{
 	int totalNodesCreated();
 	int selectRandSrcDest();
 };
-//Queue implementation using linked list
+//linked list of Nodes
+//I am very bad at naming
 class node{
 	public:
 	Node* newTreeNode;//for Node address
