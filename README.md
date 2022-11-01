@@ -11,8 +11,4 @@ This is a simple Dijkstra's Algorithm Visualizer Software created using concept 
 ![Instruction Menu](./Output/Demo.gif)
 ***
 ***
-### Project Member
-* Akanksha Giri
-* Devraj Parajuli
-* Kailash Pantha
-***
+copyright@dev2079BS
